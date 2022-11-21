@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "960219316373",
+    "project_id": "friendlystudent-df766",
+    "storage_bucket": "friendlystudent-df766.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960219316373:android:6d524ba41e70a162689b9c",
+        "android_client_info": {
+          "package_name": "com.example.friendlystudent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960219316373-vvmci90tihdqsh5j0qvsmojpfaolv6ct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBod8xYrE9q-KytkPKpf7B7QZFE80E8ZGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960219316373-vvmci90tihdqsh5j0qvsmojpfaolv6ct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
