@@ -37,6 +37,9 @@ public class RegistrationPage extends AppCompatActivity {
             .setReorderingAllowed(true)
             .addToBackStack("name")
             .commit();
+            TextView c= (TextView) findViewById(R.id.);
+            String m= c.getText().toString();
+            Toast.makeText(this, ""+m, Toast.LENGTH_SHORT).show();
         }
 
     }
