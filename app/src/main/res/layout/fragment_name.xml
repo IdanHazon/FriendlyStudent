@@ -78,12 +78,12 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="21dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/assistant"
             android:text="שם משתמש"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/editTextName"
             app:layout_constraintEnd_toEndOf="parent" />
 

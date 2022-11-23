@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 public class RegistrationPage extends AppCompatActivity {
 
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +38,7 @@ public class RegistrationPage extends AppCompatActivity {
             .setReorderingAllowed(true)
             .addToBackStack("name")
             .commit();
-            TextView c= (TextView) findViewById(R.id.);
-            String m= c.getText().toString();
-            Toast.makeText(this, ""+m, Toast.LENGTH_SHORT).show();
+
         }
 
     }
@@ -47,12 +46,17 @@ public class RegistrationPage extends AppCompatActivity {
     private boolean validateName(View view) {
         EditText name= findViewById(R.id.editTextName);
         int nameLength=name.getText().toString().length();
-        if (nameLength<2 || nameLength>8){
-            TextView alert= findViewById(R.id.alert);
-            alert.setText("שם משתמש קצר/ארוך מידי");
+        TextView alert= findViewById(R.id.alert);
+
+        if (nameLength<2){
+            alert.setText("שם משתמש קצר מדי");
             return false;
         }
-            return true;
+        if (nameLength>8){
+            alert.setText("שם משתמש ארוך מדי");
+            return false;
+        }
+        return true;
     }
 
 }
