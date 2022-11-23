@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,6 +59,22 @@ public class RegistrationPage extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+    public void addThirdFragment(View view){
+        EditText eMail= findViewById(R.id.editEmail);
+        String mail= eMail.getText().toString();
+        if (isValidEmail(mail)){
+            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            TextView alert= findViewById(R.id.alertEmail);
+            alert.setText("כתובת אימייל לא תקינה");
+
+        }
+    }
+
+    public  boolean isValidEmail(String mail) {
+        return (!mail.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(mail).matches());
     }
 
 }
