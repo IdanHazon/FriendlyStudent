@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RegistrationPage extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
 
-    private FBAuthentication FB;
+public class RegistrationPage extends AppCompatActivity{
+
+    private FirebaseAuth mAuth= FirebaseAuth.getInstance();
     private String name;
     private String email;
     private String password;
@@ -26,7 +28,7 @@ public class RegistrationPage extends AppCompatActivity {
     {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView, name.class, null)
+                .replace(R.id.fragmentContainerView, loading_screen.class, null)
                 .setReorderingAllowed(true)
                 .addToBackStack("start")
                 .commit();
@@ -34,22 +36,24 @@ public class RegistrationPage extends AppCompatActivity {
 
     public void addSecondFragment(View view)
     {
+
         EditText name= findViewById(R.id.editTextName);
         int nameLength=name.getText().toString().length();
         if (validName(nameLength)){
+            this.name=name.getText().toString();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, email.class, null)
             .setReorderingAllowed(true)
             .addToBackStack("name")
             .commit();
-            this.name=name.toString();
         }
 
     }
 
     private boolean validName(int nameLength) {
         TextView alert= findViewById(R.id.alert);
+
         if (nameLength<2){
             alert.setText("שם משתמש קצר מדי");
             return false;
@@ -63,14 +67,14 @@ public class RegistrationPage extends AppCompatActivity {
     public void addThirdFragment(View view){
         EditText eMail= findViewById(R.id.editEmail);
         String mail= eMail.getText().toString();
-        if (validEmail(mail)){
+        if (validEmail(mail)) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, password.class, null)
                     .setReorderingAllowed(true)
-                    .addToBackStack("password")
+                    .addToBackStack("email")
                     .commit();
-            this.email=mail;
+            this.email = mail;
         }
         else{
             TextView alert= findViewById(R.id.alertEmail);
@@ -82,26 +86,36 @@ public class RegistrationPage extends AppCompatActivity {
     public  boolean validEmail(String mail) {
         return (!mail.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(mail).matches());
     }
-    public void addFourthFragment(){
+
+    public void addFourthFragment(View view){
         EditText editPassword= findViewById(R.id.editPassword);
         String password= editPassword.getText().toString();
         if (validPassword(password)) {
+            this.password=password;
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, registerComplete.class, null)
                     .setReorderingAllowed(true)
                     .addToBackStack("password")
                     .commit();
-            this.password=password;
+            registerUSer();
         }
         else{
             TextView alert= findViewById(R.id.alertPass);
             alert.setText("סיסמה לא תקינה");
         }
-}
-    public  boolean validPassword(String pass) {
-        return (pass.length()<6 || pass.length()>20);
     }
 
+    private void registerUSer() {
+        mAuth.createUserWithEmailAndPassword(this.email,this.password);
+
+    }
+
+    public  boolean validPassword(String pass) {
+        return (pass.length()>6 && pass.length()<20);
+    }
+public String getName(){
+        return name;
+}
 
 }

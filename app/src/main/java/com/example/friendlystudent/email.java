@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 
 public class email extends Fragment {
+    private String name;
     public email() {
         // Required empty public constructor
     }
@@ -35,10 +36,10 @@ public class email extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        EditText name = getActivity().findViewById(R.id.editTextName);
-        String s = name.getText().toString();
+        RegistrationPage activity= (RegistrationPage) getActivity();
+        this.name= activity.getName();
         TextView instructions= getActivity().findViewById(R.id.textGetEmail);
-        instructions.setText("היי "+s+", מה כתובת האימייל שלך?");
+        instructions.setText("היי "+name+", מה כתובת האימייל שלך?");
 
     }
 }
