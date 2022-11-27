@@ -13,7 +13,10 @@ import android.widget.Toast;
 
 public class RegistrationPage extends AppCompatActivity {
 
-    private User user;
+    private FBAuthentication FB;
+    private String name;
+    private String email;
+    private String password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,25 +34,22 @@ public class RegistrationPage extends AppCompatActivity {
 
     public void addSecondFragment(View view)
     {
-
-        boolean validate = validateName(view);
-        if (validate){
+        EditText name= findViewById(R.id.editTextName);
+        int nameLength=name.getText().toString().length();
+        if (validName(nameLength)){
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, email.class, null)
             .setReorderingAllowed(true)
             .addToBackStack("name")
             .commit();
-
+            this.name=name.toString();
         }
 
     }
 
-    private boolean validateName(View view) {
-        EditText name= findViewById(R.id.editTextName);
-        int nameLength=name.getText().toString().length();
+    private boolean validName(int nameLength) {
         TextView alert= findViewById(R.id.alert);
-
         if (nameLength<2){
             alert.setText("שם משתמש קצר מדי");
             return false;
@@ -63,8 +63,14 @@ public class RegistrationPage extends AppCompatActivity {
     public void addThirdFragment(View view){
         EditText eMail= findViewById(R.id.editEmail);
         String mail= eMail.getText().toString();
-        if (isValidEmail(mail)){
-            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+        if (validEmail(mail)){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView, password.class, null)
+                    .setReorderingAllowed(true)
+                    .addToBackStack("password")
+                    .commit();
+            this.email=mail;
         }
         else{
             TextView alert= findViewById(R.id.alertEmail);
@@ -73,8 +79,29 @@ public class RegistrationPage extends AppCompatActivity {
         }
     }
 
-    public  boolean isValidEmail(String mail) {
+    public  boolean validEmail(String mail) {
         return (!mail.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(mail).matches());
     }
+    public void addFourthFragment(){
+        EditText editPassword= findViewById(R.id.editPassword);
+        String password= editPassword.getText().toString();
+        if (validPassword(password)) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView, registerComplete.class, null)
+                    .setReorderingAllowed(true)
+                    .addToBackStack("password")
+                    .commit();
+            this.password=password;
+        }
+        else{
+            TextView alert= findViewById(R.id.alertPass);
+            alert.setText("סיסמה לא תקינה");
+        }
+}
+    public  boolean validPassword(String pass) {
+        return (pass.length()<6 || pass.length()>20);
+    }
+
 
 }
