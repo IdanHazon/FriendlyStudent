@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegistrationPage extends AppCompatActivity{
 
-    private FirebaseAuth mAuth= FirebaseAuth.getInstance();
+    private FBAuthentication FB;
     private String name;
     private String email;
     private String password;
@@ -23,12 +23,13 @@ public class RegistrationPage extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_page);
+        FB=new FBAuthentication();
     }
     public void addFirstFragment(View view)
     {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView, loading_screen.class, null)
+                .replace(R.id.fragmentContainerView, name.class, null)
                 .setReorderingAllowed(true)
                 .addToBackStack("start")
                 .commit();
@@ -98,7 +99,7 @@ public class RegistrationPage extends AppCompatActivity{
                     .setReorderingAllowed(true)
                     .addToBackStack("password")
                     .commit();
-            registerUSer();
+            FB.registerUSer(this.email,this.password);
         }
         else{
             TextView alert= findViewById(R.id.alertPass);
@@ -106,10 +107,6 @@ public class RegistrationPage extends AppCompatActivity{
         }
     }
 
-    private void registerUSer() {
-        mAuth.createUserWithEmailAndPassword(this.email,this.password);
-
-    }
 
     public  boolean validPassword(String pass) {
         return (pass.length()>6 && pass.length()<20);
