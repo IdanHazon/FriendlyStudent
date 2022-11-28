@@ -95,7 +95,7 @@ public class RegistrationPage extends AppCompatActivity{
             this.password=password;
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerView, registerComplete.class, null)
+                    .replace(R.id.fragmentContainerView, loading_screen.class, null)
                     .setReorderingAllowed(true)
                     .addToBackStack("password")
                     .commit();
@@ -115,4 +115,12 @@ public String getName(){
         return name;
 }
 
+    public void addFifthFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, registerComplete.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack("loading")
+                .commit();
+    }
 }
