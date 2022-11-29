@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class RegistrationPage extends AppCompatActivity{
+public class RegistrationPage extends AppCompatActivity implements RegisterCallback{
 
     private FBAuthentication FB;
     private String name;
@@ -23,7 +23,7 @@ public class RegistrationPage extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_page);
-        FB=new FBAuthentication();
+        FB=new FBAuthentication(this);
     }
     public void addFirstFragment(View view)
     {
@@ -93,13 +93,14 @@ public class RegistrationPage extends AppCompatActivity{
         String password= editPassword.getText().toString();
         if (validPassword(password)) {
             this.password=password;
+            FB.registerUSer(this.email,this.password);
+
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, loading_screen.class, null)
                     .setReorderingAllowed(true)
                     .addToBackStack("password")
                     .commit();
-            FB.registerUSer(this.email,this.password);
         }
         else{
             TextView alert= findViewById(R.id.alertPass);
@@ -122,5 +123,13 @@ public String getName(){
                 .setReorderingAllowed(true)
                 .addToBackStack("loading")
                 .commit();
+    }
+
+    @Override
+    public void authenticateResult(boolean success) {
+    if (success)
+        Toast.makeText(this, "YES~!", Toast.LENGTH_SHORT).show();
+    else
+        Toast.makeText(this, "Sorry", Toast.LENGTH_SHORT).show();
     }
 }

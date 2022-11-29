@@ -16,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FBAuthentication authentication = new FBAuthentication();
-        if (authentication.isRegistered()) {
+       // FBAuthentication authentication = new FBAuthentication();
+       // if (authentication.isRegistered()) {
             //go to next activity
-        }
+      //  }
     }
 
     public void openRegistrationScreen(View view) {
