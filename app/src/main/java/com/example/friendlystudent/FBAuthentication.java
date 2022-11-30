@@ -26,11 +26,11 @@ public void registerUSer(String mail, String password){
             if(task.isSuccessful())
             {
                 // registered success
-                activity.authenticateResult(true);
+                activity.authenticateResult(true,"");
             }
             else
             {
-                activity.authenticateResult(false);
+                activity.authenticateResult(false,task.getException().getMessage());
 
             }
 

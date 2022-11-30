@@ -126,10 +126,10 @@ public String getName(){
     }
 
     @Override
-    public void authenticateResult(boolean success) {
+    public void authenticateResult(boolean success,String message) {
     if (success)
-        Toast.makeText(this, "YES~!", Toast.LENGTH_SHORT).show();
+        addFifthFragment();
     else
-        Toast.makeText(this, "Sorry", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Sorry " + message, Toast.LENGTH_SHORT).show();
     }
 }
