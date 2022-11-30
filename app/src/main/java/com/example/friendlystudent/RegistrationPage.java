@@ -140,11 +140,12 @@ public String getName(){
     }
 
     private void alertUser(String message) {
-        TextView alert= findViewById(R.id.alertEmail);
-        if (message.equals("The email address is badly formatted."))
-            alert.setText("כתובת אימייל לא תקינה");
-        if (message.equals("The email address is already in use by another account."))
-            alert.setText("כתובת אימייל תפוסה");
+        //TextView alert= findViewById(R.id.alertEmail);
+       // if (message.equals("The email address is badly formatted."))
+           // alert.setText("כתובת אימייל לא תקינה");
+      //  if (message.equals("The email address is already in use by another account."))
+          //  alert.setText("כתובת אימייל תפוסה");
+        Toast.makeText(this, "שגי", Toast.LENGTH_SHORT).show();
 
     }
 
