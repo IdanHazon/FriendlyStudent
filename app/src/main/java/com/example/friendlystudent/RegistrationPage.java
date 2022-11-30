@@ -16,6 +16,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegistrationPage extends AppCompatActivity implements RegisterCallback{
 
     private FBAuthentication FB;
+    private FragmentManager fragmentManager;
+    private boolean allowBack;
+
     private String name;
     private String email;
     private String password;
@@ -24,14 +27,16 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_page);
         FB=new FBAuthentication(this);
+         fragmentManager = getSupportFragmentManager();
+         allowBack=true;
     }
     public void addFirstFragment(View view)
     {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, name.class, null)
                 .setReorderingAllowed(true)
-                .addToBackStack("start")
+                .addToBackStack("name")
                 .commit();
     }
 
@@ -42,11 +47,11 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
         int nameLength=name.getText().toString().length();
         if (validName(nameLength)){
             this.name=name.getText().toString();
-            FragmentManager fragmentManager = getSupportFragmentManager();
+
             fragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, email.class, null)
             .setReorderingAllowed(true)
-            .addToBackStack("name")
+            .addToBackStack("email")
             .commit();
         }
 
@@ -69,11 +74,11 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
         EditText eMail= findViewById(R.id.editEmail);
         String mail= eMail.getText().toString();
         if (validEmail(mail)) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
+
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, password.class, null)
                     .setReorderingAllowed(true)
-                    .addToBackStack("email")
+                    .addToBackStack("password")
                     .commit();
             this.email = mail;
         }
@@ -85,7 +90,7 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
     }
 
     public  boolean validEmail(String mail) {
-        return (!mail.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(mail).matches());
+        return  (!mail.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(mail).matches());
     }
 
     public void addFourthFragment(View view){
@@ -94,13 +99,12 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
         if (validPassword(password)) {
             this.password=password;
             FB.registerUSer(this.email,this.password);
-
-            FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, loading_screen.class, null)
                     .setReorderingAllowed(true)
-                    .addToBackStack("password")
+                    .addToBackStack("loading_screen")
                     .commit();
+            allowBack=false;
         }
         else{
             TextView alert= findViewById(R.id.alertPass);
@@ -117,19 +121,36 @@ public String getName(){
 }
 
     public void addFifthFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, registerComplete.class, null)
                 .setReorderingAllowed(true)
-                .addToBackStack("loading")
                 .commit();
     }
 
     @Override
     public void authenticateResult(boolean success,String message) {
-    if (success)
+        if (success)
         addFifthFragment();
-    else
-        Toast.makeText(this, "Sorry " + message, Toast.LENGTH_SHORT).show();
+    else{
+            allowBack=true;
+            fragmentManager.popBackStack("email", 0);
+            alertUser(message);
+          }
+    }
+
+    private void alertUser(String message) {
+        TextView alert= findViewById(R.id.alertEmail);
+        if (message.equals("The email address is badly formatted."))
+            alert.setText("כתובת אימייל לא תקינה");
+        if (message.equals("The email address is already in use by another account."))
+            alert.setText("כתובת אימייל תפוסה");
+
+    }
+
+    @Override
+    public void onBackPressed(){
+        if (allowBack)
+            super.onBackPressed();
     }
 }
