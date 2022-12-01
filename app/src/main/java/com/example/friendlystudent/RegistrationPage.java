@@ -11,17 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+public class RegistrationPage extends AppCompatActivity implements RegisterCallback, GetName{
 
-public class RegistrationPage extends AppCompatActivity implements RegisterCallback{
-
-    private FBAuthentication FB;
-    private FragmentManager fragmentManager;
-    private boolean allowBack;
-
-    private String name;
-    private String email;
-    private String password;
+    private FBAuthentication FB; // handle the authentication
+    private FragmentManager fragmentManager;//replace between registration fragments
+    private boolean allowBack;//defines if the user can press the 'Back' button
+    private User user;// creating the user for the firebase
+    private email emailFrag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +25,10 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
         FB=new FBAuthentication(this);
          fragmentManager = getSupportFragmentManager();
          allowBack=true;
+         user=new User();
+         emailFrag= new email(this);
     }
-    public void addFirstFragment(View view)
+    public void addNameFragment(View view)
     {
 
         fragmentManager.beginTransaction()
@@ -40,16 +38,15 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
                 .commit();
     }
 
-    public void addSecondFragment(View view)
+    public void addEmailFragment(View view)
     {
 
         EditText name= findViewById(R.id.editTextName);
         int nameLength=name.getText().toString().length();
-        if (validName(nameLength)){
-            this.name=name.getText().toString();
-
+        if (validName(nameLength)){//returns if the input is valid
+            user.setName(name.getText().toString());
             fragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainerView, email.class, null)
+            .replace(R.id.fragmentContainerView, emailFrag, null)
             .setReorderingAllowed(true)
             .addToBackStack("email")
             .commit();
@@ -57,7 +54,7 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
 
     }
 
-    private boolean validName(int nameLength) {
+    private boolean validName(int nameLength) {//Checks if the input (username) is at least 2 characters long
         TextView alert= findViewById(R.id.alert);
 
         if (nameLength<2){
@@ -70,7 +67,7 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
         }
         return true;
     }
-    public void addThirdFragment(View view){
+    public void addPasswordFragment(View view){
         EditText eMail= findViewById(R.id.editEmail);
         String mail= eMail.getText().toString();
         if (validEmail(mail)) {
@@ -80,7 +77,7 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
                     .setReorderingAllowed(true)
                     .addToBackStack("password")
                     .commit();
-            this.email = mail;
+            user.setEmail(mail);
         }
         else{
             TextView alert= findViewById(R.id.alertEmail);
@@ -93,12 +90,13 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
         return  (!mail.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(mail).matches());
     }
 
-    public void addFourthFragment(View view){
+    public void addLoadingScreenFragment(View view){
         EditText editPassword= findViewById(R.id.editPassword);
         String password= editPassword.getText().toString();
         if (validPassword(password)) {
-            this.password=password;
-            FB.registerUSer(this.email,this.password);
+            user.setPassword(password);
+            FB.registerUSer(user.getEmail(), user.getPassword());
+
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, loading_screen.class, null)
                     .setReorderingAllowed(true)
@@ -116,11 +114,12 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
     public  boolean validPassword(String pass) {
         return (pass.length()>6 && pass.length()<20);
     }
+
 public String getName(){
-        return name;
+        return user.getName();
 }
 
-    public void addFifthFragment() {
+    public void addRegisterCompleteFragment() {
 
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, registerComplete.class, null)
@@ -131,7 +130,7 @@ public String getName(){
     @Override
     public void authenticateResult(boolean success,String message) {
         if (success)
-        addFifthFragment();
+        addRegisterCompleteFragment();
     else{
             allowBack=true;
             fragmentManager.popBackStack("email", 0);
