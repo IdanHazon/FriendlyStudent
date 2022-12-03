@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RegistrationPage extends AppCompatActivity implements RegisterCallback, GetName{
+public class RegistrationPage extends AppCompatActivity implements RegisterCallback, GetNameTextView {
 
     private FBAuthentication FB; // handle the authentication
     private FragmentManager fragmentManager;//replace between registration fragments
@@ -118,6 +118,11 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
 public String getName(){
         return user.getName();
 }
+
+    @Override
+    public TextView getTextView() {
+        return findViewById(R.id.textGetEmail);
+    }
 
     public void addRegisterCompleteFragment() {
 

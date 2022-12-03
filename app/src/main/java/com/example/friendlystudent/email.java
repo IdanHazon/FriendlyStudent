@@ -9,16 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class email extends Fragment {
-    private GetName Iname;
-    private String name;
+    private GetNameTextView getNameTextView;
     public email(RegistrationPage activity) {
-        Iname=activity;
+        getNameTextView =activity;
     }
     public email(){}
 
@@ -38,12 +36,8 @@ public class email extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        //RegistrationPage activity= (RegistrationPage) getActivity();
-        //this.name= activity.getName();
-        // TextView instructions= getActivity().findViewById(R.id.textGetEmail);
-        Toast.makeText(getActivity(), ""+Iname.getName(), Toast.LENGTH_SHORT).show();
-       // instructions.setText("היי "+name+", מה כתובת האימייל שלך?");
+        TextView instructions= getNameTextView.getTextView();
+       instructions.setText("היי "+getNameTextView.getName()+", מה כתובת האימייל שלך?");
 
     }
 
