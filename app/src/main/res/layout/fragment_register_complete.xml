@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="540dp"
             android:fontFamily="@font/assistant"
-            android:text="Friendly student"
+            android:text="Friendly Student"
             android:textColor="#FFFFFF"
             android:textSize="48dp"
             android:textStyle="bold"
@@ -53,7 +53,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent" />
-
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation"
             android:layout_width="410dp"
@@ -67,5 +66,7 @@
             app:lottie_rawRes="@raw/confetti">
 
         </com.airbnb.lottie.LottieAnimationView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

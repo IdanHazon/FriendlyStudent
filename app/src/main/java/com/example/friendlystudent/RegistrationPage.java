@@ -18,6 +18,7 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
     private boolean allowBack;//defines if the user can press the 'Back' button
     private User user;// creating the user for the firebase
     private email emailFrag;
+    private DB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
          allowBack=true;
          user=new User();
          emailFrag= new email(this);
+         db= new DB();
     }
     public void addNameFragment(View view)
     {
@@ -94,20 +96,23 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
         EditText editPassword= findViewById(R.id.editPassword);
         String password= editPassword.getText().toString();
         if (validPassword(password)) {
-            user.setPassword(password);
-            FB.registerUSer(user.getEmail(), user.getPassword());
-
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerView, loading_screen.class, null)
-                    .setReorderingAllowed(true)
-                    .addToBackStack("loading_screen")
-                    .commit();
+            addToFirebase(password);
             allowBack=false;
         }
         else{
             TextView alert= findViewById(R.id.alertPass);
             alert.setText("סיסמה לא תקינה");
         }
+    }
+
+    private void addToFirebase(String password) {
+        FB.registerUSer(user.getEmail(), password);
+        db.addUser(user);
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, loading_screen.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack("loading_screen")
+                .commit();
     }
 
 
