@@ -11,14 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RegistrationPage extends AppCompatActivity implements RegisterCallback, GetNameTextView {
+public class RegistrationPage extends AppCompatActivity implements RegisterCallback, GetNameTextView, RegisterCompleteFrag {
 
     private FBAuthentication FB; // handle the authentication
     private FragmentManager fragmentManager;//replace between registration fragments
     private boolean allowBack;//defines if the user can press the 'Back' button
     private User user;// creating the user for the firebase
-    private email emailFrag;
-    private DB db;
+    private email emailFrag;//reference to the email fragment class
+    private DB db;// firebase
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
          allowBack=true;
          user=new User();
          emailFrag= new email(this);
-         db= new DB();
+         db= new DB(this);
     }
     public void addNameFragment(View view)
     {
@@ -42,7 +42,6 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
 
     public void addEmailFragment(View view)
     {
-
         EditText name= findViewById(R.id.editTextName);
         int nameLength=name.getText().toString().length();
         if (validName(nameLength)){//returns if the input is valid
@@ -95,7 +94,7 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
     public void addLoadingScreenFragment(View view){
         EditText editPassword= findViewById(R.id.editPassword);
         String password= editPassword.getText().toString();
-        if (validPassword(password)) {
+        if (validPassword(password)) {//if password valid
             addToFirebase(password);
             allowBack=false;
         }
@@ -107,7 +106,6 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
 
     private void addToFirebase(String password) {
         FB.registerUSer(user.getEmail(), password);
-        db.addUser(user);
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, loading_screen.class, null)
                 .setReorderingAllowed(true)
@@ -129,8 +127,7 @@ public String getName(){
         return findViewById(R.id.textGetEmail);
     }
 
-    public void addRegisterCompleteFragment() {
-
+    public void addRegisterCompleteFrag() {//called after the user information is uploaded to the firebase
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, registerComplete.class, null)
                 .setReorderingAllowed(true)
@@ -139,8 +136,9 @@ public String getName(){
 
     @Override
     public void authenticateResult(boolean success,String message) {
-        if (success)
-        addRegisterCompleteFragment();
+        if (success){
+            db.addUser(user);
+        }
     else{
             allowBack=true;
             fragmentManager.popBackStack("email", 0);

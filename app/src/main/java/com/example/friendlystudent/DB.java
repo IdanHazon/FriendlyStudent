@@ -9,14 +9,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DB {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    public DB(){}
+    RegisterCompleteFrag activity;
+    public DB(RegistrationPage activity){
+        this.activity=activity;
+    }
 
     public void addUser(User user){
         db.collection("users").add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
-                if (task.isSuccessful()){}
+                if (task.isSuccessful()){
+                    activity.addRegisterCompleteFrag();
+                }
                 else{
 
                 }
