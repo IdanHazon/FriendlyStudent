@@ -15,9 +15,9 @@ public class DB {
     }
 
     public void addUser(User user){
-        db.collection("users").add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+        db.collection("Users").document(""+user.getEmail()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
+            public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     activity.addRegisterCompleteFrag();
                 }

@@ -20,7 +20,7 @@ public class FBAuthentication {
     public boolean isRegistered(){
         return mAuth.getCurrentUser()!=null;
     }
-public void registerUSer(String mail, String password){
+public void registerUser(String mail, String password){
     mAuth.createUserWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
         @Override
         public void onComplete(@NonNull Task<AuthResult> task) {

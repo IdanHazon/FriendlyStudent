@@ -105,7 +105,7 @@ public class RegistrationPage extends AppCompatActivity implements RegisterCallb
     }
 
     private void addToFirebase(String password) {
-        FB.registerUSer(user.getEmail(), password);
+        FB.registerUser(user.getEmail(), password);
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, loading_screen.class, null)
                 .setReorderingAllowed(true)
