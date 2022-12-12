@@ -9,14 +9,14 @@ import android.view.Window;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements UserSignIn {
+private FBAuthentication authentication;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // FBAuthentication authentication = new FBAuthentication();
+         authentication = new FBAuthentication(this);
        // if (authentication.isRegistered()) {
             //go to next activity
       //  }
