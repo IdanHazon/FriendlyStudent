@@ -152,7 +152,7 @@ public String getName(){
            // alert.setText("כתובת אימייל לא תקינה");
       //  if (message.equals("The email address is already in use by another account."))
           //  alert.setText("כתובת אימייל תפוסה");
-        Toast.makeText(this, "שגי", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "שגיאה", Toast.LENGTH_SHORT).show();
 
     }
 
