@@ -48,12 +48,11 @@ public class FBAuthentication {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
             if (task.isSuccessful()){
-
+                mainActivity.signInResult(true);
             }
             else{
-
+                    mainActivity.signInResult(false);
             }
-
             }
         });
     }

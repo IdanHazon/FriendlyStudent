@@ -28,7 +28,7 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/password"
         android:layout_width="370dp"
         android:layout_height="45dp"
         android:layout_marginTop="30dp"
@@ -38,10 +38,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/emailAdress" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/emailAdress"
         android:layout_width="370dp"
         android:layout_height="45dp"
         android:layout_marginTop="54dp"
@@ -61,7 +61,7 @@
         android:layout_marginBottom="6dp"
         android:text="אימייל"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/emailAdress"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -74,7 +74,7 @@
         android:textColor="@color/white"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <TextView
         android:id="@+id/textView7"
@@ -97,7 +97,7 @@
         android:layout_marginBottom="6dp"
         android:text="סיסמה"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView

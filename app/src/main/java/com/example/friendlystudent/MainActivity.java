@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-
-import com.google.firebase.auth.FirebaseAuth;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements UserSignIn {
 private FBAuthentication authentication;
@@ -28,7 +27,17 @@ private FBAuthentication authentication;
     }
 
     public void signIn(View view) {
-
+        EditText email= findViewById(R.id.emailAdress);
+        EditText password= findViewById(R.id.password);
+        authentication.signInUser(email.getText().toString(), password.getText().toString());
+    }
+    public void signInResult(boolean success){
+        if(success){
+            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
