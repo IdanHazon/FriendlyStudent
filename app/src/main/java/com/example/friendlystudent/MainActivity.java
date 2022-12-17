@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.animation.ObjectAnimator;
 
 public class MainActivity extends AppCompatActivity implements UserSignIn {
 private FBAuthentication authentication;
@@ -24,12 +27,20 @@ private FBAuthentication authentication;
     public void openRegistrationScreen(View view) {
         Intent windowChange= new Intent(this, RegistrationPage.class);
         startActivity(windowChange);
+
     }
 
     public void signIn(View view) {
         EditText email= findViewById(R.id.emailAdress);
         EditText password= findViewById(R.id.password);
-        authentication.signInUser(email.getText().toString(), password.getText().toString());
+
+        if (!email.getText().toString().isEmpty()&&!password.getText().toString().isEmpty())
+            authentication.signInUser(email.getText().toString(), password.getText().toString());
+       else{
+           TextView text= findViewById(R.id.textView8);
+           text.setText("כתובת אימייל או סיסמה לא נכונים");
+       }
+       //        authentication.forgotPassword(email.getText().toString());
     }
     public void signInResult(boolean success){
         if(success){
@@ -38,7 +49,8 @@ private FBAuthentication authentication;
             startActivity(intent);
         }
         else{
-            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+            TextView text= findViewById(R.id.textView8);
+            text.setText("כתובת אימייל או סיסמה לא נכונים");
         }
     }
 

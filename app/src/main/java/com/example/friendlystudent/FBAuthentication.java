@@ -56,4 +56,18 @@ public class FBAuthentication {
             }
         });
     }
+    public void forgotPassword(String emailAddress){
+        mAuth.sendPasswordResetEmail(emailAddress)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                });
+    }
 }
