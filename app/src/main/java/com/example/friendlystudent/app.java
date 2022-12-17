@@ -11,4 +11,8 @@ public class app extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
     }
+    @Override
+    public void onBackPressed(){
+return;
+    }
 }

@@ -34,6 +34,8 @@ private FBAuthentication authentication;
     public void signInResult(boolean success){
         if(success){
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+            Intent intent= new Intent(this, app.class);
+            startActivity(intent);
         }
         else{
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
