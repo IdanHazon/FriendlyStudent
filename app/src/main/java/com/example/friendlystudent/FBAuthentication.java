@@ -64,11 +64,11 @@ public class FBAuthentication {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            forgotPasswordActivity.sendEmailResult(true);
+                            forgotPasswordActivity.sendEmailResult(true, "");
                         }
                         else
                         {
-                            forgotPasswordActivity.sendEmailResult(false);
+                            forgotPasswordActivity.sendEmailResult(false, task.getException().toString());
 
                         }
                     }

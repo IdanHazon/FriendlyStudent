@@ -1,5 +1,5 @@
 package com.example.friendlystudent;
 
 public interface SentEmail {
-    void sendEmailResult(boolean success);
+    void sendEmailResult(boolean success, String exception);
 }
