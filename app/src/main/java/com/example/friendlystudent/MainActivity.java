@@ -40,7 +40,6 @@ private FBAuthentication authentication;
            TextView text= findViewById(R.id.textView8);
            text.setText("כתובת אימייל או סיסמה לא נכונים");
        }
-       //        authentication.forgotPassword(email.getText().toString());
     }
     public void signInResult(boolean success){
         if(success){
@@ -54,4 +53,10 @@ private FBAuthentication authentication;
         }
     }
 
+    public void changePasswordActivity(View view) {
+    Intent intent= new Intent(this, forgotPassword.class );
+    EditText email= findViewById(R.id.emailAdress);
+    intent.putExtra("email",email.getText().toString());
+    startActivity(intent);
+    }
 }
