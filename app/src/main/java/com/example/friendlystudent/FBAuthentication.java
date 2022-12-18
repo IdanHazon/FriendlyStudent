@@ -15,6 +15,7 @@ public class FBAuthentication {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private RegisterCallback activity;
     private UserSignIn mainActivity;
+    private forgotPassword forgotPasswordActivity;
 
     public FBAuthentication(RegistrationPage activity) {
         this.activity = activity;
@@ -22,6 +23,7 @@ public class FBAuthentication {
     public FBAuthentication(MainActivity mainActivity) {
         this.mainActivity=mainActivity;
     }
+    public FBAuthentication(forgotPassword forgotPasswordActivity) {this.forgotPasswordActivity=forgotPasswordActivity;}
 
     public boolean isRegistered() {
         return mAuth.getCurrentUser() != null;
@@ -62,9 +64,11 @@ public class FBAuthentication {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            forgotPasswordActivity.sendEmailResult(true);
                         }
                         else
                         {
+                            forgotPasswordActivity.sendEmailResult(false);
 
                         }
                     }
