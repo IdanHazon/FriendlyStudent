@@ -4,14 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.friendlystudent.communication.FBAuthentication;
 
 public class forgotPassword extends AppCompatActivity implements SentEmail {
 private LottieAnimationView animationView;//get loading animation
@@ -35,7 +34,7 @@ private ImageView button;
         emailEditText.setText(email);
     }
     public void sendEmail(View view){
-        button.setEnabled(true);
+        button.setClickable(false);
         animationView = findViewById(R.id.animation);
         animationView.setVisibility(View.VISIBLE);
         animationView.playAnimation();//starts loading animation
@@ -46,16 +45,20 @@ private ImageView button;
     @Override
     public void sendEmailResult(boolean success, String exception) {
         TextView textView= findViewById(R.id.textView11);
-        animationView.setVisibility(View.INVISIBLE);
+        animationView.loop(false);
+
 
         if (success){
             textView.setText("הודעה נשלחה לכתובת האימייל");
         }
         else{
-            button.setEnabled(true);//can click the "send" button again
+            button.setClickable(true);
             textView.setText("כתובת אימייל שגויה");
             }
 
         }
 
+    public void moveToMainActivity(View view) {
+        onBackPressed();
     }
+}

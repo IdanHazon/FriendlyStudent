@@ -1,9 +1,14 @@
-package com.example.friendlystudent;
+package com.example.friendlystudent.communication;
 
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.friendlystudent.MainActivity;
+import com.example.friendlystudent.RegisterCallback;
+import com.example.friendlystudent.RegistrationPage;
+import com.example.friendlystudent.UserSignIn;
+import com.example.friendlystudent.forgotPassword;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

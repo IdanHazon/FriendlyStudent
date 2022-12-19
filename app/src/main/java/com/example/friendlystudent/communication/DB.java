@@ -1,7 +1,10 @@
-package com.example.friendlystudent;
+package com.example.friendlystudent.communication;
 
 import androidx.annotation.NonNull;
 
+import com.example.friendlystudent.RegisterCompleteFrag;
+import com.example.friendlystudent.RegistrationPage;
+import com.example.friendlystudent.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;

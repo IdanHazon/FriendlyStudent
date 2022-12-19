@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.friendlystudent.communication.DB;
+import com.example.friendlystudent.communication.FBAuthentication;
+
 public class RegistrationPage extends AppCompatActivity implements RegisterCallback, GetNameTextView, RegisterCompleteFrag {
 
     private FBAuthentication FB; // handle the authentication
