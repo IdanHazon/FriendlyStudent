@@ -33,14 +33,12 @@ private FBAuthentication authentication;
     public void signIn(View view) {
         EditText email= findViewById(R.id.emailAdress);
         EditText password= findViewById(R.id.password);
-
-        if (!email.getText().toString().isEmpty()&&!password.getText().toString().isEmpty())
+        TextView text= findViewById(R.id.textView8);
+        text.setText("");
+        if (!email.getText().toString().isEmpty()&&!password.getText().toString().isEmpty()){
             authentication.signInUser(email.getText().toString(), password.getText().toString());
-       else{
-           TextView text= findViewById(R.id.textView8);
-           text.setText("כתובת אימייל או סיסמה לא נכונים");
-       }
-       //        authentication.forgotPassword(email.getText().toString());
+
+        }
     }
     public void signInResult(boolean success){
         if(success){

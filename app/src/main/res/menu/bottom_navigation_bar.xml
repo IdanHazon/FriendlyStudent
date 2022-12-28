@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="User"
-        android:icon="@drawable/ic_outline_person_24"
-        android:id="@+id/user"
-        />
-    <item android:title="Search"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:id="@+id/search"
-        />
-    <item android:title="Add"
-        android:icon="@drawable/ic_outline_post_add_24"
-        android:id="@+id/add"
-        />
-    <item android:title="Chats"
-        android:icon="@drawable/ic_outline_chat_24"
+
+    <item android:title="צ'אטים"
+        android:icon="@drawable/chat_icon"
         android:id="@+id/chats"
         />
-    <item android:title="Qa"
-        android:icon="@drawable/ic_outline_question_answer_24"
-        android:id="@+id/qa"
+    <item android:title="העלאת תכנים"
+        android:icon="@drawable/add_document_icon"
+        android:id="@+id/add"
         />
+    <item android:title="חיפוש"
+        android:icon="@drawable/search_icon"
+        android:id="@+id/search"
+        />
+    <item android:title="פרופיל"
+        android:icon="@drawable/user_icon"
+        android:id="@+id/user"
+        />
+
+
+
 </menu>
