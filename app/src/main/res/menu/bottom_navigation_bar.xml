@@ -8,7 +8,7 @@
         />
     <item android:title="העלאת תכנים"
         android:icon="@drawable/add_document_icon"
-        android:id="@+id/add"
+        android:id="@+id/addFiles"
         />
     <item android:title="חיפוש"
         android:icon="@drawable/search_icon"
@@ -16,7 +16,7 @@
         />
     <item android:title="פרופיל"
         android:icon="@drawable/user_icon"
-        android:id="@+id/user"
+        android:id="@+id/homepage"
         />
 
 
