@@ -19,6 +19,7 @@ private FBAuthentication authentication;
         setContentView(R.layout.activity_main);
 
          authentication = new FBAuthentication(this);
+         //startActivity(new Intent(this,app.class));
        // if (authentication.isRegistered()) {
             //go to next activity
       //  }
