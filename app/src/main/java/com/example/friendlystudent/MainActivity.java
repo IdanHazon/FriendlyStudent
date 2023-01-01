@@ -41,7 +41,7 @@ private FBAuthentication authentication;
 
         }
     }
-    public void signInResult(boolean success){
+    public void signInResult(boolean success, String exception){
         if(success){
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
             Intent intent= new Intent(this, app.class);
@@ -49,7 +49,7 @@ private FBAuthentication authentication;
         }
         else{
             TextView text= findViewById(R.id.textView8);
-            text.setText("כתובת אימייל או סיסמה לא נכונים");
+            text.setText(exception);
         }
     }
     public void changePasswordActivity(View view) {

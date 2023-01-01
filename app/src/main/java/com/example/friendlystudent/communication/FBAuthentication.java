@@ -11,10 +11,14 @@ import com.example.friendlystudent.UserSignIn;
 import com.example.friendlystudent.forgotPassword;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.internal.api.FirebaseNoSignedInUserException;
 
 public class FBAuthentication {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -55,10 +59,19 @@ public class FBAuthentication {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
             if (task.isSuccessful()){
-                mainActivity.signInResult(true);
+                mainActivity.signInResult(true, "");
             }
             else{
-                    mainActivity.signInResult(false);
+                try {
+                    throw task.getException();
+                } catch (FirebaseNetworkException e) {
+                    mainActivity.signInResult(false, "שגיאת אינטרנט");
+
+                } catch (FirebaseAuthInvalidUserException e) {
+                    mainActivity.signInResult(false, "כתובת אימייל או סיסמה לא נכונים");
+                } catch (Exception e) {
+                    mainActivity.signInResult(false, "שגיאה");
+                 }
             }
             }
         });
