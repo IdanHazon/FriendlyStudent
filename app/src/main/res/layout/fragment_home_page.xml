@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:fontFamily="@font/assistant"
-            android:text="עידן 47"
+            android:text="עמית2312"
             android:textColor="#000000"
             android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
