@@ -5,33 +5,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.friendlystudent.app_fragments.addFilesFragment;
 import com.example.friendlystudent.app_fragments.chatsFragment;
 import com.example.friendlystudent.app_fragments.homepageFragment;
 import com.example.friendlystudent.app_fragments.searchFragment;
+import com.example.friendlystudent.communication.DB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class app extends AppCompatActivity {
+public class app extends AppCompatActivity implements UserData {
 private BottomNavigationView bottomNavigationView;
-
 private homepageFragment homepageFragment;
 private chatsFragment chatsFragment;
 private searchFragment searchFragment;
 private addFilesFragment addFilesFragment;
+    private DB database=new DB(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        homepageFragment=new homepageFragment();
         chatsFragment= new chatsFragment();
         searchFragment=new searchFragment();
         addFilesFragment=new addFilesFragment();
         bottomNavigationView= findViewById(R.id.navigationBar);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,homepageFragment).commit();
-        bottomNavigationView.setSelectedItemId(R.id.homepage);
         replaceFragments();
+
+        database.getUserDataByEmail(getIntent().getStringExtra("email"));
     }
     @Override
     public void onBackPressed(){
@@ -59,5 +62,22 @@ return;
 
             }
         });
+    }
+
+    @Override
+    public void userDataResult(User data, Boolean success, String exception) {
+        if (success){
+            findViewById(R.id.loadingGif).setVisibility(View.GONE);//loading animation gone
+            findViewById(R.id.loadingText).setVisibility(View.GONE);
+            findViewById(R.id.frameLayout).setVisibility(View.VISIBLE);//show the elements
+            bottomNavigationView.setVisibility(View.VISIBLE);//show the navigation bar
+
+            homepageFragment=new homepageFragment(data);//create homepage fragment with the user data
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,homepageFragment).commit();
+            bottomNavigationView.setSelectedItemId(R.id.homepage);
+        }
+        else
+            Toast.makeText(this, "no", Toast.LENGTH_SHORT).show();
+
     }
 }

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 public class User {
     private String name;
     private String email;
+
+
+    private int contentCounter;
     private ArrayList<content>contents;
     private ImageView profilePic;
     private int friendlyPoints;
@@ -17,9 +20,18 @@ public class User {
     public User(String name, String email){
         this.name= name;
         this.email= email;
+        this.level=1;
+        this.contentCounter=0;
     }
     public User(){
 
+    }
+    public int getContentCounter() {
+        return contentCounter;
+    }
+
+    public void setContentCounter(int contentCounter) {
+        this.contentCounter = contentCounter;
     }
 
     public ArrayList<chat> getChats() {

@@ -19,7 +19,6 @@ private FBAuthentication authentication;
         setContentView(R.layout.activity_main);
 
          authentication = new FBAuthentication(this);
-         //startActivity(new Intent(this,app.class));
        // if (authentication.isRegistered()) {
             //go to next activity
       //  }
@@ -45,6 +44,8 @@ private FBAuthentication authentication;
         if(success){
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
             Intent intent= new Intent(this, app.class);
+            EditText email= findViewById(R.id.emailAdress);
+            intent.putExtra("email",email.getText().toString());
             startActivity(intent);
         }
         else{

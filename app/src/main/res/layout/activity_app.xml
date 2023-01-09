@@ -9,6 +9,7 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
@@ -17,9 +18,33 @@
         app:layout_constraintTop_toTopOf="parent">
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/loadingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:fontFamily="@font/assistant"
+        android:letterSpacing="0.3"
+        android:text="טוען משתמש"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loadingGif"
+        android:layout_width="150dp"
+        android:layout_height="149dp"
+        android:src="@drawable/profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationBar"
-
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@drawable/rounded_nev_bar"

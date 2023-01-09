@@ -11,24 +11,105 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <View
             android:id="@+id/divider"
             android:layout_width="wrap_content"
             android:layout_height="2dp"
-            android:layout_marginTop="259dp"
-            android:background="?android:attr/listDivider"
+            android:layout_marginTop="192dp"
+            android:background="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_marginTop="72dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="72dp"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            android:rotation="90"
+            app:layout_constraintBottom_toTopOf="@+id/divider4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/userNameDisplay3"
+            android:layout_width="206dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="27dp"
+            android:fontFamily="@font/assistant"
+            android:text="תכנים שהעלתי"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/contentCounter"
+            android:layout_width="206dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/assistant"
+            android:text="-1"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/friendlyPointsCounter"
+            android:layout_width="206dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/assistant"
+            android:text="-1"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/userNameDisplay4"
+            android:layout_width="206dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="27dp"
+            android:fontFamily="@font/assistant"
+            android:text="Friendly points"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintVertical_bias="0.0" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImage"
-            android:layout_width="156dp"
-            android:layout_height="140dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="50dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="40dp"
             android:src="@drawable/graduated"
             app:civ_border_color="@color/black"
             app:civ_border_width="4dp"
@@ -37,10 +118,10 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/level"
-            android:layout_width="88dp"
-            android:layout_height="71dp"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="132dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="108dp"
             android:src="@drawable/level2"
             app:civ_border_color="@color/black"
             app:civ_border_width="1dp"
@@ -51,15 +132,28 @@
             android:id="@+id/userNameDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="68dp"
             android:fontFamily="@font/assistant"
-            android:text="עמית2312"
+            android:text="null"
             android:textColor="#000000"
-            android:textSize="48sp"
+            android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.943"
+            app:layout_constraintHorizontal_bias="0.937"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/userNameDisplay2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/assistant"
+            android:text="עדכון פרטים אישיים"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userNameDisplay" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

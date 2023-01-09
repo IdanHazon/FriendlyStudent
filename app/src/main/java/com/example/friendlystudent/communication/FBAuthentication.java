@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
@@ -69,7 +70,10 @@ public class FBAuthentication {
 
                 } catch (FirebaseAuthInvalidUserException e) {
                     mainActivity.signInResult(false, "כתובת אימייל או סיסמה לא נכונים");
-                } catch (Exception e) {
+                } catch (FirebaseAuthInvalidCredentialsException e) {
+                    mainActivity.signInResult(false, "כתובת אימייל או סיסמה לא נכונים");
+                }
+                catch (Exception e) {
                     mainActivity.signInResult(false, "שגיאה");
                  }
             }
