@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/examName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="First Exam"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="195dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <ImageView
+            android:id="@+id/examPic"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/examName"
+            app:srcCompat="@drawable/profile"
+            tools:layout_editor_absoluteX="247dp"
+            tools:layout_editor_absoluteY="80dp" />
+
+        <TextView
+            android:id="@+id/examDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/examName"
+            android:layout_toEndOf="@+id/examPic"
+            android:gravity="center"
+            android:text="May 23, 2015"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="267dp"
+            tools:layout_editor_absoluteY="51dp" />
+
+
+        <ImageView
+            android:id="@+id/examPic2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/examDate"
+            app:srcCompat="@drawable/profile"
+            tools:layout_editor_absoluteX="95dp"
+            tools:layout_editor_absoluteY="41dp" />
+
+        <TextView
+            android:id="@+id/examMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/examDate"
+            android:layout_toEndOf="@+id/examPic2"
+            android:gravity="center"
+            android:text="Best Of Luck"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="41dp" />
+
+        <TextView
+            android:id="@+id/border2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="#808080" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

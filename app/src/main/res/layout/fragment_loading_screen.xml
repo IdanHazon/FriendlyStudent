@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
 
     tools:context=".loading_screen">
@@ -20,7 +20,7 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="232dp"
+            android:layout_marginTop="320dp"
             android:fontFamily="@font/assistant"
             android:letterSpacing="0.3"
             android:text="יוצר חשבון"
@@ -32,11 +32,12 @@
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="150dp"
             android:layout_height="149dp"
-            android:layout_marginTop="7dp"
             android:src="@drawable/profile"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

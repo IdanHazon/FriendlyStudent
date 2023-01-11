@@ -3,6 +3,7 @@ package com.example.friendlystudent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,8 +77,10 @@ return;
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,homepageFragment).commit();
             bottomNavigationView.setSelectedItemId(R.id.homepage);
         }
-        else
-            Toast.makeText(this, "no", Toast.LENGTH_SHORT).show();
+        else {
+            startActivity(new Intent(this, MainActivity.class));
+            Toast.makeText(this, "שגיאה", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
