@@ -16,7 +16,7 @@
             android:id="@+id/examName"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="First Exam"
+            android:text="כותרת תוכן"
             android:textColor="@color/black"
             android:textSize="16sp"
             tools:layout_editor_absoluteX="195dp"
@@ -31,6 +31,7 @@
             tools:layout_editor_absoluteX="247dp"
             tools:layout_editor_absoluteY="80dp" />
 
+
         <TextView
             android:id="@+id/examDate"
             android:layout_width="wrap_content"
@@ -40,9 +41,8 @@
             android:gravity="center"
             android:text="May 23, 2015"
             android:textSize="16sp"
-            tools:layout_editor_absoluteX="267dp"
-            tools:layout_editor_absoluteY="51dp" />
-
+            tools:layout_editor_absoluteX="300dp"
+            tools:layout_editor_absoluteY="41dp" />
 
         <ImageView
             android:id="@+id/examPic2"
